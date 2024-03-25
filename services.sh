@@ -12,13 +12,6 @@ cd airootfs/etc/systemd/system/
 pwd
 
 tput setaf 2
-echo "Enabling LightDM and Graphical Target.."
-tput sgr0
-ln -sv /usr/lib/systemd/system/graphical.target default.target
-
-ln -sv /usr/lib/systemd/system/lightdm.service display-manager.service
-
-tput setaf 2
 echo "Enabling Network Manager..."
 tput sgr0
 ln -sv /usr/lib/systemd/system/NetworkManager.service multi-user.target.wants/NetworkManager.service
