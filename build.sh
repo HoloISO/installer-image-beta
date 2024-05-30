@@ -12,11 +12,13 @@ if [[ -z "$BUILDDIR" ]]; then
     exit 0
 fi
 INSTALLDIR="${BUILDDIR}/holoiso-installer/${BRANCH}"
+WORKDIR="/tmp/$(date +%Y%m%d.%H%M.%S)"
 mkdir -p $INSTALLDIR
 rm -rf ${SCRIPTPATH}/airootfs/etc/holoinstall/*zst
 source ${BUILDDIR}/holoiso-images/latest_$BRANCH.releasemeta
 mkdir -p ${SCRIPTPATH}/airootfs/etc/holoinstall
 cp ${BUILDDIR}/holoiso-images/${IMAGEFILE}.img.zst ${SCRIPTPATH}/airootfs/etc/holoinstall
 echo ${IMAGEFILE} > /tmp/currentcandidate
-sudo mkarchiso -v -w /tmp/$(date +%Y%m%d.%H%M.%S) -o ${INSTALLDIR} ${SCRIPTPATH}
+sudo mkarchiso -v -w ${WORKDIR} -o ${INSTALLDIR} ${SCRIPTPATH}
 rm -rf ${SCRIPTPATH}/airootfs/etc/holoinstall/*zst
+rm -rf ${WORKDIR}
