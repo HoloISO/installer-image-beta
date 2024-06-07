@@ -152,3 +152,4 @@ git
 firefox
 xorg-server
 xf86-video-intel
+lib32-vulkan-intel
